@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<h2>Files</h2>
+<ul>
+    <li th:each="file : ${files}">
+        <span th:text="${file.name}">File Name</span>
+        <a th:href="@{/download/{id}(id=${file.id})}">Download</a>
+        <a th:href="@{/share/{id}(id=${file.id})}">Share</a>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Download File</title>
+</head>
+<body>
+<h1>Download File</h1>
+<p th:text="'File Name: ' + ${file.fileName}"></p>
+<div th:each="version : ${versions}">
+  <p th:text="'Version: ' + ${version.versionName}"></p>
+  <a th:href="@{/files/download/version/{id}(id=${version.id})}">Download Version</a>
+</div>
+</body>
+</html>

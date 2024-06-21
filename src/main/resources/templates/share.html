@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Share File</title>
+</head>
+<body>
+<h1>Share File</h1>
+<p th:text="'File Name: ' + ${file.fileName}"></p>
+<form th:action="@{/files/share/{id}(id=${file.id})}" method="post">
+    <div>
+        <label>Share With (Username):</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <button type="submit">Share</button>
+    </div>
+</form>
+</body>
+</html>
