@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
+@Table(name = "user")
 @Getter
 @Setter
 public class User {
@@ -15,7 +16,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String username;
+
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
