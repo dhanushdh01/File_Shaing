@@ -22,19 +22,25 @@ public class FileController {
     @Autowired
     private VersionService versionService;
 
+    // Get the dashboard page with the list of files
+    // Postman: GET request to http://localhost:8080/dashboard
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        // Assuming you add a method to fetch all files for the logged-in user
         List<FileEntity> files = fileService.getAllFiles();
         model.addAttribute("files", files);
         return "dashboard";
     }
 
+    // Get the upload page
+    // Postman: GET request to http://localhost:8080/upload
     @GetMapping("/upload")
     public String upload() {
         return "upload";
     }
 
+    // Handle file upload
+    // Postman: POST request to http://localhost:8080/upload
+    // Body: form-data with key "file" (type: file) and key "version" (type: text)
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("version") String version) throws IOException {
         FileEntity fileEntity = fileService.saveFile(file);
@@ -42,6 +48,8 @@ public class FileController {
         return "redirect:/dashboard";
     }
 
+    // Get the download page for a specific file
+    // Postman: GET request to http://localhost:8080/download/{fileId}
     @GetMapping("/download/{fileId}")
     public String download(@PathVariable Long fileId, Model model) {
         FileEntity fileEntity = fileService.getFile(fileId);
@@ -51,6 +59,8 @@ public class FileController {
         return "download";
     }
 
+    // Get the share page for a specific file
+    // Postman: GET request to http://localhost:8080/share/{fileId}
     @GetMapping("/share/{fileId}")
     public String share(@PathVariable Long fileId, Model model) {
         FileEntity fileEntity = fileService.getFile(fileId);
